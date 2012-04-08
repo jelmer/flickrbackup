@@ -251,7 +251,7 @@ def writeEXIF(imagepath,key,value):
 if __name__ == '__main__':
 
     program = "flickrbackup"
-    version = "%prog 0.1"
+    version = "%prog 0.2"
     usage = "Usage: %prog [OPTIONS] -o OUTPUT_DIR"
     description = "Backup your flickr photos."
 
@@ -273,7 +273,7 @@ if __name__ == '__main__':
                   action="store_true",
                   dest="xml",
                   default=False,
-                  help="store metadata as default flickr XML files [default: %default]",
+                  help="store metadata as default flickr XML files [NOT IMPLEMENTED]",
                   )
     parser.add_option('-u', '--metadata-update',
                   action="store_true",
