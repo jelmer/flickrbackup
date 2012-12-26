@@ -25,7 +25,8 @@ import hashlib
 import sys
 import os
 import optparse
-import pyexiv2
+
+from gi.repository import GExiv2
 
 API_KEY       = "5c94226d43774e47e67b0b8578a95a40"
 SHARED_SECRET = "dfbd14bafe4e8f06"
@@ -240,10 +241,9 @@ def getmetadata(id, token):
 #
 def writeEXIF(imagepath,key,value):
     try:
-        metadata = pyexiv2.ImageMetadata(imagepath)
-        metadata.read()
+        metadata = GExiv2.Metadata(imagepath)
         metadata[key] = value
-        metadata.write()
+        metadata.save_file()
     except:
         print "Failed to write EXIF tag %s to photo id %s" % (key, imagepath)
 
