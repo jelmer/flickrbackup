@@ -9,6 +9,13 @@ dependencies
 
 python, python-pyexiv2
 
+settings
+--------
+
+    $ mv local_settings.py.in local_settings.py
+
+Edit local_settings.py with your Flickr API Key and Secret
+
 simple usage
 ------------
 
@@ -27,6 +34,8 @@ Options:
   -o OUTPUT_DIR, --output_dir=OUTPUT_DIR
                         set the local directory where you want to store your
                         pictures
+  -S BACKUP_SET, --set=BACKUP_SET
+                        Specific set to backup
   -e, --metadata-exif   store flickr metadata (title, description etc) as EXIF
                         tags in your local files [default: False]
   -x, --metadata-xml    store metadata as default flickr XML files [NOT
