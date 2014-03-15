@@ -26,9 +26,13 @@ import sys
 import os
 import optparse
 import pyexiv2
+try:
+    import local_settings
+except ImportError:
+    print "Can't find local settings :("
 
-API_KEY       = "5c94226d43774e47e67b0b8578a95a40"
-SHARED_SECRET = "dfbd14bafe4e8f06"
+API_KEY       = local_settings.API_KEY
+SHARED_SECRET = local_settings.SHARED_SECRET
 
 #
 # Utility functions for dealing with flickr authentication
@@ -263,6 +267,11 @@ if __name__ == '__main__':
                   dest="output_dir",
                   help="set the local directory where you want to store your pictures",
                   )
+    parser.add_option('-S', '--set',
+                  action="store",
+                  dest="backup_set",
+                  help="Specific set to backup"
+                  )
     parser.add_option('-e', '--metadata-exif',
                   action="store_true",
                   dest="exif",
@@ -287,6 +296,7 @@ if __name__ == '__main__':
                   default=False,
                   help="generate a local HTML gallery [NOT IMPLEMENTED]",
                   )
+
     (options, args) = parser.parse_args()
     try:
         os.chdir(options.output_dir)
@@ -336,6 +346,11 @@ if __name__ == '__main__':
         # Build the list of photos
         url   = "http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos"
         url  += "&photoset_id=" + pid
+
+        # If we requested a single set to be backed up...
+        if options.backup_set and dir == options.backup_set:
+            urls.append( (url , dir) )
+            continue
 
         # Append to our list of urls
         urls.append( (url , dir) )
