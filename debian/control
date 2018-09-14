@@ -5,7 +5,7 @@ Maintainer: Tiago Bortoletto Vaz <tiago@debian.org>
 Build-Depends-Indep: debhelper (>= 7.0.50~), help2man, python, python-pyexiv2
 Standards-Version: 3.9.2
 Vcs-Browser: https://github.com/tiagovaz/flickrbackup
-Vcs-Git: git://github.com/tiagovaz/flickrbackup.git
+Vcs-Git: https://github.com/tiagovaz/flickrbackup.git -b debian
 
 Package: flickrbackup
 Architecture: all
